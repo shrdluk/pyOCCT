@@ -20,17 +20,18 @@ requirements:
     - pybind11
     - occt ==7.2.*
     - vtk ==8.1.*
-    - smesh ==8.3.*
-    - netgen ==6.2.*
+    - smesh ==8.3.*  # [win]
+    - netgen ==6.2.* # [win]
 
   run:
     - python
-    - wxpython
+    - wxpython       # [win]
+    - wxpython ==4.0.1 py36h37420ed_1 # [linux]
     - vc 14 # [win]
     - occt ==7.2.*
     - vtk ==8.1.*
-    - smesh ==8.3.*
-    - netgen ==6.2.*
+    - smesh ==8.3.*  # [win]
+    - netgen ==6.2.* # [win]
 
 test:
   imports:
