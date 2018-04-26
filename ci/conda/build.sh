@@ -1,21 +1,11 @@
-mkdir build
-cd build
+# Conda build file
+# Run from Docker container
 
-export CC=gcc-4.9
-export CXX=g++-4.9
+echo "Conda build"
+echo "PREFIX = $PREFIX"
+echo "SP_DIR = $SP_DIR"
+echo "SRC_DIR = $SRC_DIR"
 
-cmake .. -G "Ninja" \
-    -DCMAKE_BUILD_TYPE="Release" \
-    -DENABLE_SMESH=OFF \
-    -DENABLE_NETGEN=OFF \
-    -DENABLE_BLSURF=OFF \
-    -DENABLE_FORCE=OFF \
-    -DENABLE_WARNINGS=OFF \
-    -DTEST_BUILD=OFF
-
-export NINJA_STATUS="[%f/%t(%r)] "
-
-ninja -j2 install
-
-cd ..
-$PYTHON setup.py install
+echo "copying"
+cp -r $SRC_DIR/OCCT $SP_DIR/OCCT
+echo "done"
