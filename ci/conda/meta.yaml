@@ -18,8 +18,8 @@ requirements:
     - cmake
     - ninja
     - pybind11
-    - occt ==7.2.*
-    - vtk ==8.1.*
+    - occt ==7.2.0
+    - vtk ==8.1.0
     - smesh ==8.3.*  # [win]
     - netgen ==6.2.* # [win]
 
