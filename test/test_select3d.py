@@ -18,34 +18,34 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301 USA
 import unittest
 
-from OCCT.AIS import AIS_Line
-from OCCT.Geom import Geom_CartesianPoint
+from OCCT.Select3D import Select3D_SensitiveTriangle
+from OCCT.gp import gp_Pnt
 
 
-class TestAISLine(unittest.TestCase):
+class TestSelect3DSensitiveTriangle(unittest.TestCase):
     """
-    Test for AIS_Line class
+    Test for Select3D_SensitiveTriangle class.
     """
 
-    def test_Points(self):
+    @classmethod
+    def setUpClass(cls):
+        p0 = gp_Pnt(1., 0., 0.)
+        p1 = gp_Pnt(2., 0., 0.)
+        p2 = gp_Pnt(2., 1., 0.)
+        cls.tri = Select3D_SensitiveTriangle(None, p0, p1, p2)
+
+    def test_Points3D(self):
         """
-        Test AIS_Line::Points method.
+        Test if the points are updated by reference.
         """
-        p1 = Geom_CartesianPoint(1., 2., 3.)
-        p2 = Geom_CartesianPoint(10., 20., 30.)
-        line = AIS_Line(p1, p2)
-
-        p3 = Geom_CartesianPoint(0., 0., 0.)
-        p4 = Geom_CartesianPoint(0., 0., 0.)
-        p3, p4 = line.Points(p3, p4)
-
-        self.assertAlmostEqual(p3.X(), 1.)
-        self.assertAlmostEqual(p3.Y(), 2.)
-        self.assertAlmostEqual(p3.Z(), 3.)
-
-        self.assertAlmostEqual(p4.X(), 10.)
-        self.assertAlmostEqual(p4.Y(), 20.)
-        self.assertAlmostEqual(p4.Z(), 30.)
+        p0 = gp_Pnt()
+        p1 = gp_Pnt()
+        p2 = gp_Pnt()
+        self.tri.Points3D(p0, p1, p2)
+        self.assertAlmostEqual(p0.X(), 1.)
+        self.assertAlmostEqual(p1.X(), 2.)
+        self.assertAlmostEqual(p2.X(), 2.)
+        self.assertAlmostEqual(p2.Y(), 1.)
 
 
 if __name__ == '__main__':
