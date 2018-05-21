@@ -12,6 +12,7 @@ env:
 cache:
   directories:
     - $HOME/mybuild
+  timeout: 500
 
 before_install:
   - python git-restore-mtime.py
